@@ -51,13 +51,13 @@ export const ContactForm = () => {
   const saveContact = () => {
     console.log({ name, email, imageUrl })
     Meteor.call('contacts.insert', { name, email, imageUrl }, (errorResponse) => {
-      if (errorResponse) {
-        showError({ message: errorResponse.error });
-      } else {
-        cleanForm()
-        showSuccess({ message: "Contact saved." });
-      }
-    })
+        if (errorResponse) {
+          showError({ message: errorResponse.error });
+        } else {
+          cleanForm()
+          showSuccess({ message: "Contact saved." });
+        }
+      })
   }
 
   return (
