@@ -10,7 +10,7 @@ export const ContactList = () => {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
 
-  const isLoading = useSubscribe('allContacts')
+  const isLoading = useSubscribe('contacts')
   const contacts = useFind(() => {
     return ContactsCollection.find({}, { sort: { createdAt: -1 } })
   })
@@ -54,10 +54,10 @@ export const ContactList = () => {
             <div>
               <a
                 href="#"
-                onClick={(event) => removeContact(event, contact._id)}
+                onClick={(event) => archiveContact(event, contact._id)}
                 className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50"
               >
-                Remove
+                Archive
               </a>
             </div>
           </div>
@@ -66,9 +66,9 @@ export const ContactList = () => {
     }
   )
 
-  const removeContact = (event, idContact) => {
+  const archiveContact = (event, idContact) => {
     event.preventDefault()
-    Meteor.call('contacts.remove', { contactId: idContact }, (errorResponse) => {
+    Meteor.call('contacts.archive', { contactId: idContact }, (errorResponse) => {
       if (errorResponse) {
         showError({ message: errorResponse.error })
       } else {
