@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import React, { useState } from 'react'
 import { ContactsCollection } from '../api/contacts/ContactsCollection'
+import '../api/contacts/ContactsMethods'
 import { useTracker } from 'meteor/react-meteor-data'
 import { ErrorAlert } from './components/alert/ErrorAlert'
 import { SuccessAlert } from './components/alert/SuccessAlert'
@@ -39,8 +40,8 @@ export const ContactList = () => {
 
   return (
     <div>
-      {error && <ErrorAlert message={error} />}
-      {success && <SuccessAlert message={success} /> }
+      {error && <ErrorAlert message={error}/>}
+      {success && <SuccessAlert message={success}/>}
       <div className="mt-10">
         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
           Contact List
